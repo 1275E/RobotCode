@@ -22,7 +22,7 @@ This pushed the changes to github.
 Run the command `git pull` and then `git merge` to update your code.
 
 ## Note ##
-The only files that should be of interest are the /src/ files. Editing the other files is not advised as they are dependencies.
+The only files that should be of interest are the `/src/` files. Editing the other files is not advised as they are dependencies.
 
 ## Stuck? ##
 go to https://dangitgit.com/.
