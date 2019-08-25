@@ -7,12 +7,15 @@ Then, you will have all of the code we use.
 Once you have editied the files and are ready to upload the code, run these commands:
 
 `git add -A`
+
 This gathers all the files that you have created/deleted/edited.
 
 `git commit -m "thoughful message"`
+
 This command stages you changes and tacks on the message to let other contibuters know whats happening and why you made these changes.
 
 `git push`
+
 This pushed the changes to github.
 
 ## Updating Your Copy of the Code ##
