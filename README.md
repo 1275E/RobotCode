@@ -1,7 +1,7 @@
 # Robot Code for the 1275E Vex Robotics Team #
 ## Installation ##
 Once you have installed git and pros, please run the command `git clone https://github.com/1275E/RobotCode.git`
-Then, you will have all of the code we use.
+Then, you will have all of the code we use. If you want to clone another repo, change the link at the end.
 
 ## Making Changes to the Code ##
 Once you have editied the files and are ready to upload the code, run these commands:
