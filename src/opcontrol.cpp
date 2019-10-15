@@ -1,10 +1,10 @@
-#define BACK_LEFT_WHEEL_PORT 1
-#define BACK_RIGHT_WHEEL_PORT 2
-#define FRONT_LEFT_WHEEL_PORT 3
-#define FRONT_RIGHT_WHEEL_PORT 4
-#define LEFT_LIFT_PORT 5
-#define RIGHT_LIFT_PORT 6
-#define CLAW_PORT 7
+#define BACK_LEFT_WHEEL_PORT 9
+#define BACK_RIGHT_WHEEL_PORT 8
+#define FRONT_LEFT_WHEEL_PORT 7
+#define FRONT_RIGHT_WHEEL_PORT 2
+#define LEFT_LIFT_PORT 1
+#define RIGHT_LIFT_PORT 10
+#define CLAW_PORT 5
 
 #include "main.h"
 #include <cmath>
@@ -15,8 +15,8 @@ void opcontrol() {
 
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-	pros::Motor leftLift(LEFT_LIFT_PORT);
-	pros::Motor rightLift(RIGHT_LIFT_PORT, true);
+	pros::Motor leftLift(LEFT_LIFT_PORT, true);
+	pros::Motor rightLift(RIGHT_LIFT_PORT);
 	pros::Motor backLeft(BACK_LEFT_WHEEL_PORT);
 	pros::Motor frontLeft(FRONT_LEFT_WHEEL_PORT);
 	pros::Motor backRight(BACK_RIGHT_WHEEL_PORT, true);
@@ -51,11 +51,7 @@ void opcontrol() {
 
 		// Claw Control
 		auto r2Status = master.get_digital(DIGITAL_R2);
-		auto r1Status = master.get_digital(DIGITAL_R1);
 		if (r2Status) {
-			claw.move(127);
-		}
-		else if (r1Status) {
 			claw.move(127);
 		}		
 		else {
