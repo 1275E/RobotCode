@@ -1,10 +1,10 @@
 /**
- * @file lv_theme_templ.h
+ * @file lv_theme_material.h
  *
  */
 
-#ifndef LV_THEME_TEMPL_H
-#define LV_THEME_TEMPL_H
+#ifndef LV_THEME_MATERIAL_H
+#define LV_THEME_MATERIAL_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,7 +15,7 @@ extern "C" {
  *********************/
 #include "display/lv_conf.h"
 
-#if USE_LV_THEME_TEMPL
+#if USE_LV_THEME_MATERIAL
 
 /*********************
  *      DEFINES
@@ -30,18 +30,18 @@ extern "C" {
  **********************/
 
 /**
- * Initialize the templ theme
+ * Initialize the material theme
  * @param hue [0..360] hue value from HSV color space to define the theme's base color
  * @param font pointer to a font (NULL to use the default)
  * @return pointer to the initialized theme
  */
-lv_theme_t * lv_theme_templ_init(uint16_t hue, lv_font_t *font);
+lv_theme_t * lv_theme_material_init(uint16_t hue, lv_font_t *font);
 
 /**
  * Get a pointer to the theme
  * @return pointer to the theme
  */
-lv_theme_t * lv_theme_get_templ(void);
+lv_theme_t * lv_theme_get_material(void);
 
 /**********************
  *      MACROS
@@ -53,4 +53,4 @@ lv_theme_t * lv_theme_get_templ(void);
 } /* extern "C" */
 #endif
 
-#endif /*LV_THEME_TEMPL_H*/
+#endif /*LV_THEME_MATERIAL_H*/
