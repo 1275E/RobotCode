@@ -12,7 +12,7 @@
 #define LEFT_INTAKE_MOTOR 6
 
 
-using namespace okapi;
+using namespace okapi;  
 
 auto drive = ChassisControllerFactory::create( {BACK_LEFT_WHEEL_PORT, -FRONT_LEFT_WHEEL_PORT}, {-BACK_RIGHT_WHEEL_PORT, FRONT_RIGHT_WHEEL_PORT}, AbstractMotor::gearset::green,{4_in, 12_in} );
 auto intake = AsyncControllerFactory::posIntegrated({-RIGHT_INTAKE_MOTOR, LEFT_INTAKE_MOTOR});
@@ -24,41 +24,84 @@ void strafeLeft();
 void strafeRight();
 void dropStack();
 void intakeCubes(int targetToIntakeTo);
+void deploy();
 
 // Autons
 void sevenStack(int isRight);
 
+// 1 : Blue Protected
+// 2 : Blue Unprotected
+// 3 : Red Protected
+// 4 : Red Unprotected
+// 5 : Experimental
+// 6 : Skills
+
 void autonomous() {
-    //if (autonomousPreSet=0)
-    //sevenStack(1);
+    deploy();
+    switch (autonomousPreSet) {
+        case 1:
+            // Blue Protected
+            sevenStack(1);
+            break;
+        case 2:
+            // Blue Unprotected
+            break;
+        case 3:
+            // Red Protected
+            sevenStack(-1);
+            break;
+        case 4:
+            // Red Unprotected
+            break;
+        case 5:
+            // Experimental
+            break;
+        case 6:
+            // Skills
+            break;
+        default:
+            // No Selection
+            break;
+    }
 };
 
 // Autons
 
 void sevenStack( int isRight) {
-    // Slow max velocity
-    intakeCubes(-100);
-
-    drive.setMaxVelocity(20);
-    drive.moveDistanceAsync(4_ft);
-    intakeCubes(1000000000);
     
     pros::delay(1500);
 
+    // Slow max velocity
+    drive.setMaxVelocity(20);
+
+    // Drive 4ft, intaking cubes
+    drive.moveDistanceAsync(4_ft);
+    intakeCubes(1000000000);
+    
+    // Wait to settle
+    pros::delay(1500);
+
+    // while, move the lift up.
     lift.setMaxVelocity(200);
     lift.tarePosition();
     lift.setTarget(2000);
     
+    // once finished,
     drive.waitUntilSettled();
     
+    // move the lift down, all while intaking cubes
     lift.setMaxVelocity(70);
     lift.setTarget(0);
     
+    // now turn to the left (or right)
     drive.turnAngle(130 * isRight);    
     drive.waitUntilSettled();
 
+    // drive to the edge of the stack.
     drive.moveDistance(2.75_ft);
     intake.stop();
+    
+    // Drop the stack
     dropStack();
 };
 
@@ -89,3 +132,11 @@ void dropStack() {
     drive.setMaxVelocity(20);
     drive.moveDistance(-2_ft);
 };
+
+void deploy() {
+    intake.setMaxVelocity(50);
+			
+	intake.tarePosition();
+
+	intake.setTarget(-500);
+}

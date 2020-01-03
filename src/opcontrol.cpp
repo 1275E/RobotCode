@@ -20,7 +20,6 @@ using namespace okapi;
 double vCurve(double val);
 double correct(double c);
 void opcontrol() {
-	
 	auto drive = ChassisControllerFactory::create( {BACK_LEFT_WHEEL_PORT, -FRONT_LEFT_WHEEL_PORT}, {-BACK_RIGHT_WHEEL_PORT, FRONT_RIGHT_WHEEL_PORT}, AbstractMotor::gearset::green,{4_in, 12_in} );
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	auto intake = AsyncControllerFactory::posIntegrated({-RIGHT_INTAKE_MOTOR, LEFT_INTAKE_MOTOR});
